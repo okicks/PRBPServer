@@ -14,7 +14,12 @@ namespace PRBPServer.Controllers
     {
         public IHttpActionResult Get()
         {
-            return Ok(CreateCategoryService().GetCategories());
+            var service = CreateCategoryService();
+
+            if (service == null)
+                return BadRequest();
+
+            return Ok(service.GetCategories());
         }
 
         public IHttpActionResult Post(CreateCategory category)
@@ -23,6 +28,9 @@ namespace PRBPServer.Controllers
                 return BadRequest(ModelState);
 
             var service = CreateCategoryService();
+
+            if (service == null)
+                return BadRequest();
 
             if (!service.CreateCategory(category))
                 return InternalServerError();
@@ -37,6 +45,9 @@ namespace PRBPServer.Controllers
 
             var service = CreateCategoryService();
 
+            if (service == null)
+                return BadRequest();
+
             if (!service.UpdateCategory(category))
                 return InternalServerError();
 
@@ -47,6 +58,9 @@ namespace PRBPServer.Controllers
         {
             var service = CreateCategoryService();
 
+            if (service == null)
+                return BadRequest();
+
             if (!service.DeleteCategory(id))
                 return InternalServerError();
 
@@ -55,7 +69,16 @@ namespace PRBPServer.Controllers
 
         private CategoryService CreateCategoryService()
         {
-            return new CategoryService(Guid.Parse(User.Identity.GetUserId()));
+            try
+            {
+                var user = Guid.Parse(User.Identity.GetUserId());
+
+                return new CategoryService(user);
+            }
+            catch (ArgumentNullException)
+            {
+                return null;
+            }
         }
     }
 }

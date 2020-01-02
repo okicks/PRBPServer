@@ -16,3 +16,4 @@ C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge
 C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\Data\obj\Debug\Data.csproj.GenerateResource.cache
 C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\Data\obj\Debug\Data.Migrations.fixedinital.resources
 C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\Data\obj\Debug\Data.csprojAssemblyReference.cache
+C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\Data\obj\Debug\Data.Migrations.test.resources

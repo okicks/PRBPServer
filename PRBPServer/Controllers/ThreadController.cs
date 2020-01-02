@@ -14,7 +14,12 @@ namespace PRBPServer.Controllers
     {
         public IHttpActionResult Get(int threadId)
         {
-            return Ok(CreateThreadService().GetThreadsByCategory(threadId));
+            var service = CreateThreadService();
+
+            if (service == null)
+                return BadRequest();
+
+            return Ok(service.GetThreadsByCategory(threadId));
         }
 
         public IHttpActionResult Post(CreateThread thread)
@@ -23,6 +28,9 @@ namespace PRBPServer.Controllers
                 return BadRequest(ModelState);
 
             var service = CreateThreadService();
+
+            if (service == null)
+                return BadRequest();
 
             if (!service.CreateThread(thread))
                 return InternalServerError();
@@ -37,6 +45,9 @@ namespace PRBPServer.Controllers
 
             var service = CreateThreadService();
 
+            if (service == null)
+                return BadRequest();
+
             if (!service.UpdateThread(thread))
                 return InternalServerError();
 
@@ -47,6 +58,9 @@ namespace PRBPServer.Controllers
         {
             var service = CreateThreadService();
 
+            if (service == null)
+                return BadRequest();
+
             if (!service.DeleteThread(id))
                 return InternalServerError();
 
@@ -55,7 +69,16 @@ namespace PRBPServer.Controllers
 
         private ThreadService CreateThreadService()
         {
-            return new ThreadService(Guid.Parse(User.Identity.GetUserId()));
+            try
+            {
+                var user = Guid.Parse(User.Identity.GetUserId());
+
+                return new ThreadService(user);
+            }
+            catch (ArgumentNullException)
+            {
+                return null;
+            }
         }
     }
 }
