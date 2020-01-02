@@ -121,3 +121,5 @@ C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge
 C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\PRBPServer\obj\Debug\PRBPServer.dll
 C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\PRBPServer\obj\Debug\PRBPServer.pdb
 C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\PRBPServer\bin\Services.dll.config
+C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\PRBPServer\bin\Swashbuckle.Core.dll
+C:\Users\Oliver Kicks\Documents\Eleven Fifty Academy\Projects\Personal Red Badge Project\PRBPServer\PRBPServer\bin\WebActivatorEx.dll
