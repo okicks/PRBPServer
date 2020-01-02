@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace PRBPServer.Controllers
 {
+    [Authorize]
     public class ThreadController : ApiController
     {
         public IHttpActionResult Get(int threadId)
