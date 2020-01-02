@@ -17,7 +17,7 @@ namespace PRBPServer.Models
     {
         public string LocalLoginProvider { get; set; }
 
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         public IEnumerable<UserLoginInfoViewModel> Logins { get; set; }
 
@@ -26,7 +26,7 @@ namespace PRBPServer.Models
 
     public class UserInfoViewModel
     {
-        public string Email { get; set; }
+        public string Username { get; set; }
 
         public bool HasRegistered { get; set; }
 
