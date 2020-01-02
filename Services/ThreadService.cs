@@ -15,7 +15,7 @@ namespace Services
             _userId = userId;
         }
 
-        public IEnumerable<ReadThread> GetThreadsByCatagory(int catagoryId)
+        public IEnumerable<ReadThread> GetThreadsByCategory(int catagoryId)
         {
             using (var ctx = new ApplicationDbContext())
             {

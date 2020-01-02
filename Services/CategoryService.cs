@@ -15,7 +15,7 @@ namespace Services
             _userId = userId;
         }
 
-        public IEnumerable<ReadCategory> GetCategorys()
+        public IEnumerable<ReadCategory> GetCategories()
         {
             using (var ctx = new ApplicationDbContext())
             {
