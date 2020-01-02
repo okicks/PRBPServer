@@ -1,0 +1,6 @@
+namespace PRBPServer.Areas.HelpPage.ModelDescriptions
+{
+    public class SimpleTypeModelDescription : ModelDescription
+    {
+    }
+}
