@@ -15,6 +15,6 @@ namespace Models.ThreadModels
         public Guid OwnerId { get; set; }
 
         [Required]
-        public int CatagoryId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

@@ -15,14 +15,14 @@ namespace Services
             _userId = userId;
         }
 
-        public IEnumerable<ReadThread> GetThreadsByCategory(int catagoryId)
+        public IEnumerable<ReadThread> GetThreadsByCategory(int categoryId)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var ThreadQuery =
                     ctx
                         .Threads
-                        .Where(e => e.CatagoryId == catagoryId)
+                        .Where(e => e.CategoryId == categoryId)
                         .Select(
                             e => new ReadThread
                             {
@@ -30,7 +30,7 @@ namespace Services
                                 Name = e.Name,
                                 OwnerId = e.OwnerId,
                                 CreationDate = e.CreationDate,
-                                CatagoryId = e.CatagoryId,
+                                CategoryId = e.CategoryId,
                             }
                         );
 
@@ -49,7 +49,7 @@ namespace Services
                         Name = model.Name,
                         OwnerId = _userId,
                         CreationDate = DateTime.Now,
-                        CatagoryId = model.CatagoryId,
+                        CategoryId = model.CategoryId,
                     };
 
                 using (var ctx = new ApplicationDbContext())

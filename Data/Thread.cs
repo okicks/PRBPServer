@@ -20,7 +20,7 @@ namespace Data
 
         [Required]
         [ForeignKey(nameof(Category))]
-        public int CatagoryId { get; set; }
+        public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
     }
