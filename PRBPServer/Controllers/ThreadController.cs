@@ -13,14 +13,14 @@ namespace PRBPServer.Controllers
     [Authorize]
     public class ThreadController : ApiController
     {
-        public IHttpActionResult Get(int threadId)
+        public IHttpActionResult Get(int categoryId)
         {
             var service = CreateThreadService();
 
             if (service == null)
                 return BadRequest();
 
-            return Ok(service.GetThreadsByCategory(threadId));
+            return Ok(service.GetThreadsByCategory(categoryId));
         }
 
         public IHttpActionResult Post(CreateThread thread)
@@ -55,14 +55,14 @@ namespace PRBPServer.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(int threadId)
         {
             var service = CreateThreadService();
 
             if (service == null)
                 return BadRequest();
 
-            if (!service.DeleteThread(id))
+            if (!service.DeleteThread(threadId))
                 return InternalServerError();
 
             return Ok();

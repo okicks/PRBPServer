@@ -55,14 +55,14 @@ namespace PRBPServer.Controllers
             return Ok();
         }
 
-        public IHttpActionResult Delete(int id)
+        public IHttpActionResult Delete(int categoryId)
         {
             var service = CreateCategoryService();
 
             if (service == null)
                 return BadRequest();
 
-            if (!service.DeleteCategory(id))
+            if (!service.DeleteCategory(categoryId))
                 return InternalServerError();
 
             return Ok();

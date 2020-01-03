@@ -40,50 +40,72 @@ namespace Services
 
         public bool CreateThread(CreateThread model)
         {
-            var entity =
-                new Thread
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                    OwnerId = _userId,
-                    CreationDate = DateTime.Now,
-                    CatagoryId = model.CatagoryId,
-                };
-
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                ctx.Threads.Add(entity);
-                return ctx.SaveChanges() == 1;
+                var entity =
+                    new Thread
+                    {
+                        Id = model.Id,
+                        Name = model.Name,
+                        OwnerId = _userId,
+                        CreationDate = DateTime.Now,
+                        CatagoryId = model.CatagoryId,
+                    };
+
+                using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.Threads.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
 
         public bool UpdateThread(UpdateThread model)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                        .Threads
-                        .Single(e => e.Id == model.Id && e.OwnerId == _userId);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                            .Threads
+                            .SingleOrDefault(e => e.Id == model.Id && e.OwnerId == _userId);
 
-                entity.Name = model.Name;
+                    entity.Name = model.Name;
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
 
         public bool DeleteThread(int ThreadId)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                        .Threads
-                        .Single(e => e.Id == ThreadId && e.OwnerId == _userId);
 
-                ctx.Threads.Remove(entity);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                            .Threads
+                            .SingleOrDefault(e => e.Id == ThreadId && e.OwnerId == _userId);
 
-                return ctx.SaveChanges() == 1;
+                    ctx.Threads.Remove(entity);
+
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
     }

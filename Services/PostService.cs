@@ -41,52 +41,73 @@ namespace Services
 
         public bool CreatePost(CreatePost model)
         {
-            var entity =
-                new Post
-                {
-                    Id = model.Id,
-                    Content = model.Content,
-                    OwnerId = _userId,
-                    CreationDate = DateTime.Now,
-                    ThreadId = model.ThreadId,
-                    Edited = false,
-                };
-
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                ctx.Posts.Add(entity);
-                return ctx.SaveChanges() == 1;
+                var entity =
+                    new Post
+                    {
+                        Id = model.Id,
+                        Content = model.Content,
+                        OwnerId = _userId,
+                        CreationDate = DateTime.Now,
+                        ThreadId = model.ThreadId,
+                        Edited = false,
+                    };
+
+                using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.Posts.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
 
         public bool UpdatePost(UpdatePost model)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                        .Posts
-                        .Single(e => e.Id == model.Id && e.OwnerId == _userId);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                            .Posts
+                            .SingleOrDefault(e => e.Id == model.Id && e.OwnerId == _userId);
 
-                entity.Content = model.Content;
-                entity.Edited = true;
+                    entity.Content = model.Content;
+                    entity.Edited = true;
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
 
         public bool DeletePost(int postId)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                        .Posts
-                        .Single(e => e.Id == postId && e.OwnerId == _userId);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                            .Posts
+                            .SingleOrDefault(e => e.Id == postId && e.OwnerId == _userId);
 
-                ctx.Posts.Remove(entity);
+                    ctx.Posts.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
     }

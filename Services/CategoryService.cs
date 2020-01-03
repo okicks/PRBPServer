@@ -36,47 +36,69 @@ namespace Services
 
         public bool CreateCategory(CreateCategory model)
         {
-            var entity =
-                new Category
-                {
-                    Id = model.Id,
-                    Name = model.Name,
-                };
-
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                ctx.Categories.Add(entity);
-                return ctx.SaveChanges() == 1;
+                var entity =
+                    new Category
+                    {
+                        Id = model.Id,
+                        Name = model.Name,
+                        OwnerId = _userId,
+                    };
+
+                using (var ctx = new ApplicationDbContext())
+                {
+                    ctx.Categories.Add(entity);
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
 
         public bool UpdateCategory(UpdateCategory model)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                        .Categories
-                        .Single(e => e.Id == model.Id && e.OwnerId == _userId);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                            .Categories
+                            .SingleOrDefault(e => e.Id == model.Id && e.OwnerId == _userId);
 
-                entity.Name = model.Name;
+                    entity.Name = model.Name;
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
 
         public bool DeleteCategory(int CategoryId)
         {
-            using (var ctx = new ApplicationDbContext())
+            try
             {
-                var entity =
-                    ctx
-                        .Categories
-                        .Single(e => e.Id == CategoryId && e.OwnerId == _userId);
+                using (var ctx = new ApplicationDbContext())
+                {
+                    var entity =
+                        ctx
+                            .Categories
+                            .SingleOrDefault(e => e.Id == CategoryId && e.OwnerId == _userId);
 
-                ctx.Categories.Remove(entity);
+                    ctx.Categories.Remove(entity);
 
-                return ctx.SaveChanges() == 1;
+                    return ctx.SaveChanges() == 1;
+                }
+            }
+            catch (NullReferenceException)
+            {
+                return false;
             }
         }
     }
