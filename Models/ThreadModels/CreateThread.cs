@@ -12,12 +12,6 @@ namespace Models.ThreadModels
         public string Name { get; set; }
 
         [Required]
-        public DateTime CreationDate { get; set; }
-
-        [Required]
-        public Guid OwnerId { get; set; }
-
-        [Required]
         public int CategoryId { get; set; }
     }
 }

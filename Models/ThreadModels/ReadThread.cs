@@ -14,7 +14,6 @@ namespace Models.ThreadModels
         [Required]
         public DateTime CreationDate { get; set; }
 
-        [Required]
         public Guid OwnerId { get; set; }
 
         [Required]
