@@ -10,9 +10,10 @@ using System.Web.Http;
 
 namespace PRBPServer.Controllers
 {
-    [Authorize]
     public class ThreadController : ApiController
     {
+
+        [Authorize]
         public IHttpActionResult Get(int categoryId)
         {
             var service = CreateThreadService();
