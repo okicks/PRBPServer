@@ -64,6 +64,10 @@ namespace Services
             {
                 return false;
             }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
         }
 
         public bool UpdatePost(UpdatePost model)
@@ -87,6 +91,10 @@ namespace Services
             {
                 return false;
             }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
         }
 
         public bool DeletePost(int postId)
@@ -106,6 +114,10 @@ namespace Services
                 }
             }
             catch (NullReferenceException)
+            {
+                return false;
+            }
+            catch (ArgumentNullException)
             {
                 return false;
             }

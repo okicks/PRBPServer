@@ -62,6 +62,10 @@ namespace Services
             {
                 return false;
             }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
         }
 
         public bool UpdateThread(UpdateThread model)
@@ -81,6 +85,10 @@ namespace Services
                 }
             }
             catch (NullReferenceException)
+            {
+                return false;
+            }
+            catch (ArgumentNullException)
             {
                 return false;
             }
@@ -104,6 +112,10 @@ namespace Services
                 }
             }
             catch (NullReferenceException)
+            {
+                return false;
+            }
+            catch (ArgumentNullException)
             {
                 return false;
             }

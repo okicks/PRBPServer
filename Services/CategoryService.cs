@@ -56,6 +56,10 @@ namespace Services
             {
                 return false;
             }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
         }
 
         public bool UpdateCategory(UpdateCategory model)
@@ -78,6 +82,10 @@ namespace Services
             {
                 return false;
             }
+            catch (ArgumentNullException)
+            {
+                return false;
+            }
         }
 
         public bool DeleteCategory(int CategoryId)
@@ -97,6 +105,10 @@ namespace Services
                 }
             }
             catch (NullReferenceException)
+            {
+                return false;
+            }
+            catch (ArgumentNullException)
             {
                 return false;
             }
