@@ -4,7 +4,7 @@ namespace Models.CategoryModels
 {
     public class UpdateCategory
     {
-        [Key]
+        [Required]
         public int Id { get; set; }
 
         [Required]
